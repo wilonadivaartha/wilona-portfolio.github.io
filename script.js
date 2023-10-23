@@ -96,3 +96,49 @@ $(".step05").click(function () {
   $("#line-progress").css("width", "100%");
   $(".analysis").addClass("active").siblings().removeClass("active");
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("getintouch");
+  const fullname = document.querySelector('input[placeholder="Fullname"]');
+  const email = document.querySelector('input[placeholder="Email Address"]');
+  const mobile = document.querySelector('input[placeholder="Mobile Number"]');
+  const emailSubject = document.querySelector(
+    'input[placeholder="Email Subject"]'
+  );
+  const message = document.querySelector("textarea");
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    let valid = true;
+
+    if (fullname.value.trim() === "") {
+      alert("Fullname harus diisi.");
+      valid = false;
+    }
+
+    if (email.value.trim() === "" || !email.value.endsWith("@gmail.com")) {
+      alert("Email harus diisi dengan benar (contoh: example@gmail.com).");
+      valid = false;
+    }
+
+    if (mobile.value.trim() === "" || mobile.value.length < 10) {
+      alert("Mobile Number harus diisi dengan minimal 10 karakter.");
+      valid = false;
+    }
+
+    if (emailSubject.value.trim() === "") {
+      alert("Email Subject harus diisi.");
+      valid = false;
+    }
+
+    if (message.value.trim() === "") {
+      alert("Your Message harus diisi.");
+      valid = false;
+    }
+
+    if (valid) {
+      // Kirim formulir jika semua validasi berhasil
+      form.submit();
+    }
+  });
+});
